@@ -1,6 +1,5 @@
 # Ankaios metalayer.
 This metalayer provides the recipes for ankaios packages needed to build and integrate its binary in yocto project environment.
-It is based on the guildline 
 
 ## Quick start
 If you already setup a yocto environment do the following if not start here [Yocto Project Quick Build](https://docs.yoctoproject.org/3.1.13/brief-yoctoprojectqs/brief-yoctoprojectqs.html#)
@@ -9,19 +8,19 @@ If you already setup a yocto environment do the following if not start here [Yoc
 1. Clone the recipes `meta-anakios/recipes-ankaios` to your yocto environent 
 2. Add the following dependencies if not yet available
 3. Add the following on your `local.conf` file, This prevents bitbake from fetching `rust` and `cargo` from poky rather, it gets the recent version from `meta-rust` layer
-```
-BBMASK += "poky/meta/recipes-devtools/rust"
-BBMASK += "poky/meta/recipes-devtools/cargo"
-```
+	```
+	BBMASK += "poky/meta/recipes-devtools/rust"
+	BBMASK += "poky/meta/recipes-devtools/cargo"
+	```
 4. Add the following binaries and then build your image
 
-```
-IMAGE_INSTALL:append = " \
-	ank \
-	ank-server \
-	ank-agent \
-"
-```
+	```
+	IMAGE_INSTALL:append = " \
+		ank \
+		ank-server \
+		ank-agent \
+	"
+	```
 ### Dependencies
 This layer depends on
 - poky
@@ -40,12 +39,12 @@ This layer depends on
 
 ### Source Code
 
-The project maintains the following source code repositories(temporary):
+This project is tested and maintains the following source:
 
 * https://github.com/mrogonna/ankaios
 
 
-# Ankaios-recipes from source
+# ankaios-recipes from source
 
 ## Prerequisites:
 Before starting, ensure you have the following:
@@ -56,7 +55,10 @@ Before starting, ensure you have the following:
 - cargo installed in you build PC
 
 ## Generate recipes for Rust based projects
-To generate a Yocto recipe for the Ankaios Rust-based project, Install `cargo bitbake` and then clone the project locally and navigate to the directory containing the `Cargo.toml` file to run `cargo bitbake`. 
+To generate a Yocto recipe for the Ankaios Rust-based project:
+- Install `cargo bitbake`
+- Clone the project locally
+- Navigate to the directory containing the `Cargo.toml` file to run `cargo bitbake`. 
 
 ### Install cargo-bitbake
 `cargo-bitbake` is a subcommand of Cargo. Its primary function is to generate a Yocto recipe that uses meta-rust to build Cargo-based projects for Yocto. It mainly uses the data in your `Cargo.toml` file.
@@ -69,16 +71,14 @@ cargo install --locked cargo-bitbake
 ```sh
 cd ${yocto-directory}/
 git clone https://github.com/mrogonna/ankaios
-cd ankaios
 ```
 
 
 ### Generate Recipe
+- Navigate to the Ankaios directory
+- Run the Bash script to automatically generate the recipe for all the packages
 ```sh
-# Navigate to the Ankaios directory
 cd ankaios/
-
-# Run the Bash script to automatically generate the recipe for all the packages
 ./cargo_bitbake.sh
 ```
 
@@ -95,7 +95,9 @@ LIC_FILES_CHKSUM = " \
 "
 ```
 ### Copy the .bb files
-Copy the recipes to the appropriate directories 
+- Copy the recipes to the appropriate directories 
+- Go back to [Quick Start](#Quick-start) to build your image
+
 
 
 
